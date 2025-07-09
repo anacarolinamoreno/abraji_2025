@@ -489,3 +489,5 @@ knitr::kable(deputados) |>
 ```
 
 # Hora de abrir o R!
+
+<https://github.com/anacarolinamoreno/abraji_2025/>
