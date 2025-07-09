@@ -373,7 +373,7 @@ Saber poucos comandos já basta pra começar a analisar!
 
 Observem a tabela para responder às próximas questões.
 
-> [tabela alesp.csv no Google Planilhas](https://docs.google.com/spreadsheets/d/1xUkv3RJ-r8Vo9MMS0rFCkJsK7BC18VTm/edit?rtpof=true#gid=1570954024)
+> [tabela alesp.csv no GitHub](https://docs.google.com/spreadsheets/d/1xUkv3RJ-r8Vo9MMS0rFCkJsK7BC18VTm/edit?rtpof=true#gid=1570954024)
 
 ## Pergunta 1:
 
