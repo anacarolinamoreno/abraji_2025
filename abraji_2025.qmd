@@ -309,6 +309,8 @@ c)  Use a quebra de linha para facilitar a leitura
 
 -   Rodar uma linha de código sem ter rodado as anteriores, que fazem parte de uma "sequência" de comandos para o programa
 
+-   Esquecer de salvar valores ou tabelas em objetos
+
 -   Pequenos erros de digitação ao escrever o código
 
 -   Não selecionar o trecho inteiro de código na hora de rodar
@@ -493,10 +495,14 @@ knitr::kable(deputados) |>
 
 # Links úteis:
 
--   Repositório de arquivos dessa oficina: <https://github.com/anacarolinamoreno/abraji_2025>
+-   [Repositório de arquivos](https://github.com/anacarolinamoreno/abraji_2025) dessa oficina
 
 -   Essa apostila: [https://anacarolinamoreno.github.io/abraji_2025](https://anacarolinamoreno.github.io/abraji_2025/abraji_2025.html)
 
--   Grupo no WhatsApp dessa oficina (link disponível até 14/07/2025): <https://bit.ly/grupo_r_abraji_2025>
+-   [Grupo no WhatsApp dessa oficina](https://bit.ly/grupo_r_abraji_2025) (link disponível até 14/07/2025)
 
--   Oficina de pacotes com Rafael Pereira: <https://ipeagit.github.io/censobr_oficina_abraji_2025>
+-   [Oficina de pacotes com Rafael Pereira](https://ipeagit.github.io/censobr_oficina_abraji_2025)
+
+-   Link para o [script com todo o código do Rafael Pereira](https://github.com/anacarolinamoreno/abraji_2025/blob/main/oficina_censobr_geobr.R)
+
+-   Documento de [links e referências](https://github.com/anacarolinamoreno/abraji_2025/blob/main/links_e_referencias.pdf) de leitura, cursos e comunidades
