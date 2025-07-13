@@ -1,7 +1,7 @@
 ---
 title: "Domingo de Dados<br>(Abraji)"
 subtitle: "Introdução à programação em R com dados eleitorais"
-author: "[**Ana Carolina Moreno**](https://www.linkedin.com/in/anacarolinamoreno)<br>[**Jade Maré**](https://www.linkedin.com/in/jademare/)"
+author: "[**Ana Carolina Moreno**](https://www.linkedin.com/in/anacarolinamoreno)<br>[**Jade Maré**](https://www.linkedin.com/in/jademare/)<br><u>[Link dessa apresentação](https://bit.ly/abraji_2025)</u>"
 format: revealjs
 incremental: false
 embed-resources: true
@@ -54,7 +54,7 @@ Tutorial da Curso-R (Windows, Mac, Linux): <https://livro.curso-r.com/1-instalac
 
 -   Instalar o RStudio
 
--   Salvar esse arquivo zip na pasta onde você for trabalhar: <https://bit.ly/abraji_2025>
+-   Entrar [nesse Github](https://github.com/anacarolinamoreno/abraji_2025/)–\> clicar no botão verde chamado "Code" –\> escolher "Download zip" –\> descomprimir a pasta e salvar no local que quiser na pasta onde você for trabalhar
 
 ## =\> Introdução
 
@@ -175,8 +175,8 @@ duracao_total
 #| echo: true
 #| fig-width: 10
 #| fig-height: 4.5
-quem_manda_aqui <- "Carol + Jade"
-quem_manda_aqui
+nomes_intrutoras <- "Carol + Jade"
+nomes_intrutoras
 ```
 
 ## 2.1 - As classes dos objetos
@@ -255,9 +255,9 @@ quem_manda_aqui
 #| fig-width: 10
 #| fig-height: 4.5
 altura_carol <- 1.54
-altura_oscar <- 2.06
-altura_jordan <- 1.98
-altura_media <- mean(c(altura_carol, altura_oscar, altura_jordan))
+altura_oscar_schmidt <- 2.06
+altura_michael_jordan <- 1.98
+altura_media <- mean(c(altura_carol, altura_oscar_schmidt, altura_michael_jordan))
 altura_media
 ```
 
@@ -438,6 +438,8 @@ Qual é o ranking de votos totais por partido em 2022?
 
 Qual é o ranking de votos totais por partido em 2022?
 
+Agrupamos por raça. OBS: Por que só aparecem três raças?
+
 ```{r}
 #| echo: true
 
@@ -452,6 +454,8 @@ votos_partidos <- alesp |>
 
 Qual é o ranking de votos totais por partido em 2022?
 
+Agrupamos por partido!
+
 ```{r}
 knitr::kable(votos_partidos) |> 
   kableExtra::kable_styling(font_size = 16)
@@ -465,16 +469,15 @@ Qual deputado reeleito ganhou mais votos de 2018 para 2022?
 
 Qual deputado reeleito ganhou mais votos de 2018 para 2022?
 
+(Não precisamos agrupar por candidato, já que eles são únicos!)
+
 ```{r}
 #| echo: true
 
 deputados <- alesp |>  
   filter(!is.na(votos_2018)) |>  
-  group_by(nome_urna_candidato) |>  
-  summarise(total_votos_2018 = sum(votos_2018),
-            total_votos_2022 = sum(votos_2022)) |> 
-  mutate(variacao_votos = total_votos_2022 - total_votos_2018,
-         pct_variacao_votos = ( variacao_votos * 100 ) / total_votos_2018) |> 
+  mutate(variacao_votos = votos_2022 - votos_2018,
+         pct_variacao_votos = ( variacao_votos * 100 ) / votos_2018) |> 
   arrange(desc(pct_variacao_votos))
   
 ```
@@ -488,6 +491,12 @@ knitr::kable(deputados) |>
   kableExtra::kable_styling(font_size = 16)
 ```
 
-# Hora de abrir o R!
+# Links úteis:
 
-<https://github.com/anacarolinamoreno/abraji_2025/>
+-   Repositório de arquivos dessa oficina: <https://github.com/anacarolinamoreno/abraji_2025>
+
+-   Essa apostila: [https://anacarolinamoreno.github.io/abraji_2025](https://anacarolinamoreno.github.io/abraji_2025/abraji_2025.html)
+
+-   Grupo no WhatsApp dessa oficina (link disponível até 14/07/2025): <https://bit.ly/grupo_r_abraji_2025>
+
+-   Oficina de pacotes com Rafael Pereira: <https://ipeagit.github.io/censobr_oficina_abraji_2025>
