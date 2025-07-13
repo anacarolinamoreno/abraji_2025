@@ -339,6 +339,7 @@ tracts_sf <- filter(tracts_sf, name_muni == 'Belo Horizonte')
 
 # merge tables
 tracts_sf$code_tract <- as.character(tracts_sf$code_tract)
+
 bh_tracts22 <- left_join(tracts_sf, tracts_df, by = 'code_tract')
 
 # calcula a área dos setores
@@ -362,3 +363,64 @@ ggplot() +
                        breaks = c(0,  5e3, 10e3, 15e3, 2e4) ,
                        labels  = c('0',  '5.000', '10.000', '15.000', '> 20.000')) +
   theme_void()
+
+
+#### ANÁLISE 7 - CALÇADAS ACESSÍVEIS PARA PESSOAS COM DEFICIÊNCIA
+
+library(censobr)
+library(geobr)
+
+# Checar o dicionário de dados pra achar as infos de domicílios e do entorno
+censobr::data_dictionary(
+  year = 2022,
+  dataset = "tracts"
+)
+
+# Puxar os dados da base de Entorno (onde tem informação sobre rampas na calçada)
+df <-  censobr::read_tracts(
+  year = 2022,
+  dataset = "Entorno"
+)
+
+# Fazer o collect selecionando as colunas que queremos
+df <- df %>%
+  select(code_tract, code_muni, code_state, domicilios_V05027) %>%
+  collect()
+
+# Procurar o código IBGE de Santos/SP
+geobr::lookup_muni(name_muni = "Santos")
+
+# Filtrar a base original só com dados dos setores censitários de Santos
+santos_df <- df %>%
+  filter(code_muni == 3548500)
+
+# Checar detalhes básicos da coluna domicilios_V05027, como mínima, máxima, média etc.
+summary(santos_df$domicilios_V05027)
+
+# Criar objeto com a malha censitária de Santos
+santos_tracts_sf <- geobr::read_census_tract(
+  year = 2022,
+  code_tract = 3548500
+)
+
+# Alterar a class da coluna code_tract para NUMÉRICO (senão não dá pra fazer JOIN)
+santos_df$code_tract <- as.numeric(santos_df$code_tract)
+
+# Criar tabela juntando os dados de calçadas e o mapa dos setores censitários de Santos
+santos_mapa <- left_join(santos_tracts_sf, santos_df, by = "code_tract")
+
+# (Não aprendemos na oficina, mas vamos gerar um mapa interativo com o pacote Mapview)
+
+# Instalar pacote Mapview
+install.packages("mapview")
+
+# Carregar pacote Mapview
+library(mapview)
+
+# Gerar mapa a partir do objeto santos_mapa, usando a coluna domicilios_V05027
+mapview(santos_mapa, zcol="domicilios_V05027")
+
+# ATENÇÃO!!!! Esse código ajuda a fazer o mapa, mas a análise mais precisa seria:
+# 1- Pegar a quantidade de setores com calçada com rampa
+# 2- Pegar o total de setores
+# 3- Calcular a proporção
